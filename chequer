@@ -2,34 +2,74 @@ import pygame
 from pygame.sprite import Sprite
 
 class Chequer(Sprite):
-    def __init__(self,screen):
+    def __init__(self,screen,pieces):
         super(Chequer,self).__init__()
         self.screen = screen
-        self.line_color = 0, 0, 0
+        self.pieces = pieces
+
+        self.black = 0, 0, 0
+        self.white = 255,255,255
+        self.intersection_list = []
+        self.poslist_b = []
+        self.poslist_w = []
+
+        self.color = 1
+
+        self.get_intersection()
+        #self.get_mouse_pos()
 
     def lines(self):
         #线条
         for a in range(100, 800, 30):
             sta_pos = 0, a
             end_pos = 600, a
-            pygame.draw.line(self.screen,self.line_color, sta_pos, end_pos, 1)
+            pygame.draw.line(self.screen,self.black, sta_pos, end_pos, 1)
             sta_pos2 = a - 100, 100
             end_pos2 = a - 100, 700
-            pygame.draw.line(self.screen,self.line_color, sta_pos2, end_pos2, 1)
+            pygame.draw.line(self.screen,self.black, sta_pos2, end_pos2, 1)
 
     def cirs(self):
         #加粗圆点
-        pos = 300, 400
-        pygame.draw.circle(self.screen, self.line_color, pos, 4)
+        pos = (300, 400)
+        pygame.draw.circle(self.screen, self.black, pos, 4)
 
         pos2 = 180, 280
-        pygame.draw.circle(self.screen, self.line_color, pos2, 3)
+        pygame.draw.circle(self.screen, self.black, pos2, 3)
 
         pos3 = 420, 280
-        pygame.draw.circle(self.screen, self.line_color, pos3, 3)
+        pygame.draw.circle(self.screen, self.black, pos3, 3)
 
         pos4 = 180, 520
-        pygame.draw.circle(self.screen, self.line_color, pos4, 3)
+        pygame.draw.circle(self.screen, self.black, pos4, 3)
 
         pos5 = 420, 520
-        pygame.draw.circle(self.screen, self.line_color, pos5, 3)
+        pygame.draw.circle(self.screen, self.black, pos5, 3)
+
+
+    def get_intersection(self):
+        """获取交点坐标"""
+        for a in range (100,800,30):
+            for b in range(0,600,30):
+                self.intersection_list.append((b,a))
+
+    def get_mouse_pos(self,pieces):
+        x,y = pygame.mouse.get_pos()
+        self.pos = int(round(x, -1)), int(round(y, -1))
+
+        if self.pos in self.intersection_list:
+            #self.poslist.append(self.pos)
+            self.set_piece(self.pos,self.white)
+
+            return True
+
+
+    def set_piece(self,pos,color):
+        """"""
+        pygame.draw.circle(self.screen,color,pos, 15)
+
+        #pygame.draw.circle(self.screen, self.white,pos, 15)
+
+
+
+
+
