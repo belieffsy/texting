@@ -1,3 +1,8 @@
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 import sys
 import pygame
 from chequer import Chequer
@@ -18,7 +23,6 @@ def check_events(chequer,pieces):
                 else:
                     chequer.poslist_w.append(pos)
                     chequer.color += 1
-
 
 
 
