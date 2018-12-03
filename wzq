@@ -1,23 +1,39 @@
 import pygame
+from pygame.sprite import Group
 import sys
 from settings import Settings
 from chequer import Chequer
+import functions as f
 
 def run_game():
     pygame.init()
     settings = Settings()
 
-    screen = pygame.display.set_mode((settings.screen_width,settings.screen_height))
-    chequer = Chequer(screen)
+    # 创建存储棋子的编组
+    pieces = Group()
+
+    screen = pygame.display.set_mode((settings.screen_width,settings.screen_height),4,0)
+    chequer = Chequer(screen,pieces)
     pygame.display.set_caption("wzq")
 
+
+
+
     while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        f.check_events(chequer,pieces)
         screen.fill((settings.bg_color))
         chequer.lines()
         chequer.cirs()
+        chequer.get_mouse_pos(pieces)
+        for pos in chequer.poslist_b:
+            chequer.set_piece(pos,chequer.black)
+        for pos in chequer.poslist_w:
+            chequer.set_piece(pos,chequer.white)
+
+
+
+
+        #piece = chequer.set_piece((0,100))
 
 
 
