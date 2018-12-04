@@ -12,7 +12,6 @@ def run_game():
     pygame.init()
     settings = Settings()
 
-
     # 创建存储棋子的编组
     pieces = Group()
 
@@ -20,9 +19,12 @@ def run_game():
     chequer = Chequer(screen,pieces)
     pygame.display.set_caption("五子棋")
     background = pygame.image.load("background3.jpg").convert()
-    button = Button(screen,'悔棋')
+    button_d = Button(screen,"悔棋",32,(65,49),(20,20,90,55))
+    button_d2 = Button(screen, "悔棋", 35, (65, 49), (18, 18, 95, 63))
+    button_r = Button(screen, "重新開始", 30, (200, 49), (130, 20, 140, 58))
+    button_r2 = Button(screen, "重新開始", 33, (200, 49), (128, 18, 145, 62))
     while True:
-        f.check_events(chequer,pieces)
+        f.check_events(chequer,pieces,button_d2,button_r2)
         #screen.fill((settings.bg_color))
         screen.blit(background,(0,0))
         chequer.lines()
@@ -33,7 +35,8 @@ def run_game():
         for pos in chequer.poslist_w:
             chequer.set_piece(pos,chequer.white)
 
-        button.draw_botton()
+        f.draw_button_d(button_d,button_d2)
+        f.draw_button_r(button_r, button_r2)
 
         pygame.display.flip()
 
