@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -27,7 +26,7 @@ class Chequer(Sprite):
         pygame.draw.aaline(self.screen, self.black, (0,100), (600,100), 1)
         pygame.draw.aaline(self.screen, self.black, (1, 100), (1, 699), 1)
         pygame.draw.aaline(self.screen, self.black, (598, 100), (598, 699), 1)
-        pygame.draw.aaline(self.screen, self.black, (1, 699), (598, 699), 1)
+        pygame.draw.aaline(self.screen, self.black, (1, 698), (598, 698), 1)
         for a in range(130, 800, 30):
             sta_pos = 1, a
             end_pos = 600, a
@@ -70,8 +69,3 @@ class Chequer(Sprite):
         pygame.draw.circle(self.screen,color,pos, 15)
 
         #pygame.draw.circle(self.screen, self.white,pos, 15)
-
-
-
-
-
