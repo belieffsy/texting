@@ -7,7 +7,7 @@ import pygame
 from chequer import Chequer
 import os
 
-def check_events(chequer,pieces,button_d2,button_r2):
+def check_events(chequer,pieces,button_d2,button_r2,msg_box):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -20,7 +20,9 @@ def check_events(chequer,pieces,button_d2,button_r2):
             elif button_d2.msg_image_rect.collidepoint(x,y):
                 check_button_d(chequer, button_d2)
             elif button_r2.msg_image_rect.collidepoint(x,y):
-                reset(chequer)
+                reset(chequer,msg_box)
+                print("a")
+
 
 def add_pos(chequer,pos):
     """如果点击下棋，添加圆心pos"""
@@ -33,11 +35,13 @@ def add_pos(chequer,pos):
         check_win(chequer.poslist_w, pos)
         chequer.color += 1
 
-def reset(chequer):
+def reset(chequer,msg_box):
     #重置游戏
     chequer.poslist_w = []
     chequer.poslist_b = []
     chequer.color = 1
+    msg_box.blitme()
+    msg_box.draw_botton()
 
 def check_button_d(chequer,button_d2):
     """检查悔棋按钮"""
