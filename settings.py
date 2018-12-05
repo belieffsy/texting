@@ -18,5 +18,8 @@ class Settings:
         #判断连子
         self.num = 0
 
+        #判断哪方获胜，1为黑棋获胜，-1为白棋获胜
+        self.get_win =None
+
 
 

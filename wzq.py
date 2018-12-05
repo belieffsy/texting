@@ -26,8 +26,9 @@ def run_game():
     button_r2 = Button(screen, "重新開始", 33, (200, 49), (128, 18, 145, 62))
 
     msg_box_reset = Msg_box(screen,"確定重新開始？","確定","取消")
-    box_black_win = Msg_box(screen, "黑棋获胜!", "確定", "取消")
-    box_white_win = Msg_box(screen, "白棋获胜!", "確定", "取消")
+    box_black_win = Msg_box(screen, "黑棋獲勝!", "再来", "退出")
+    box_white_win = Msg_box(screen, "白棋獲勝!", "再来", "退出")
+    box_get_draw = Msg_box(screen, "平局!", "再来", "退出")
     while True:
         f.check_events(settings,chequer,pieces,button_d2,button_r2,msg_box_reset)
         #screen.fill((settings.bg_color))
@@ -43,7 +44,7 @@ def run_game():
         f.draw_button_d(button_d,button_d2)
         f.draw_button_r(button_r, button_r2)
 
-        f.draw_box_reset(settings,msg_box_reset)
+        f.draw(settings,msg_box_reset,box_black_win,box_white_win,box_get_draw)
 
 
 
