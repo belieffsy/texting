@@ -23,12 +23,17 @@ class Msg_box():
         self.image_rect = self.image.get_rect()
         self.image_rect.center =self.screen_rect.center
 
+        self.x, self.y = self.image_rect.centerx + 168, self.image_rect.top + 23
+        self.circle_rect = pygame.Rect(self.x - 20, self.y - 20, 50, 50)
+
         self.prep_msg(msg)
         self.prep_msg2(msg2, self.font)
         self.prep_msg3(msg3,self.font)
 
         self.prep_msg21(msg2, self.font2)
         self.prep_msg31(msg3, self.font2)
+
+        #self.draw_close2()
 
 
 
@@ -95,11 +100,8 @@ class Msg_box():
         self.screen.blit(self.msg31_image, self.msg31_image_rect)
 
     def draw_close(self):
-        x,y = self.image_rect.centerx + 168, self.image_rect.top + 23
-        pygame.draw.circle(self.screen, self.color_b, (x,y), 20, 5)
-        self.circle_rect = pygame.Rect(x-20,y-20,50,50)
+        pygame.draw.circle(self.screen, self.color_b, (self.x,self.y), 20, 4)
 
     def draw_close2(self):
-        x,y = self.image_rect.centerx + 168, self.image_rect.top + 23
-        pygame.draw.circle(self.screen, self.color_b, (x-2,y+2), 22, 7)
+        pygame.draw.circle(self.screen, self.color_b, (self.x-1,self.y+1), 22, 7)
 
