@@ -5,9 +5,8 @@ import pygame
 from pygame.sprite import Sprite
 
 class Chequer(Sprite):
-    def __init__(self,settings,screen,pieces):
+    def __init__(self,screen,pieces):
         super(Chequer,self).__init__()
-        self.settings = settings
         self.screen = screen
         self.pieces = pieces
 
@@ -17,7 +16,7 @@ class Chequer(Sprite):
         self.poslist_b = []
         self.poslist_w = []
 
-
+        self.color = 1
 
         self.get_intersection()
         #self.get_mouse_pos()
@@ -49,19 +48,16 @@ class Chequer(Sprite):
         pos5 = 420, 520
         pygame.draw.circle(self.screen, self.black, pos5, 3)
 
-
     def get_intersection(self):
         """获取交点坐标"""
         for a in range (100,801,30):
             for b in range(0,601,30):
                 self.intersection_list.append((b,a))
-
-
     def get_mouse_pos(self,pieces):
         x,y = pygame.mouse.get_pos()
         self.pos = int(round(x, -1)), int(round(y, -1))
         if self.pos in self.intersection_list:
-            if self.settings.color:
+            if self.color:
                 self.set_piece(self.pos,self.black)
             else:
                 self.set_piece(self.pos,self.white)
